@@ -137,9 +137,9 @@ body {
 // circuler checkbox
 // ========================================
 			.roundCheckBox {
-		    width: 2.3em;
+		    width: 2.4em;
 		    height: 2.3em;
-		    background-color: black;
+		    background-color: rgba(0,0,0,0.4);
 		    border-radius: 50%;
 		    vertical-align: middle;
 		    border: 1px solid #ddd;
@@ -237,6 +237,8 @@ body {
 }
 
 .quote-para {
+	line-height: 1.6;
+	// word-spacing: 2px;
 	color: #f3f3f3;
 	font-style: italic;
 	text-shadow: 0 0 8px black;
@@ -250,4 +252,25 @@ body {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+}
+
+.greeting {
+	height: 200px;
+	width: 400px;
+	background-color: rgba(255,255,255,0.3);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	color: red;
+	transform: translate(-50%, -50%);
+}
+
+.login-input {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 400px;
+	background-color: red;
+	color: red;
 }

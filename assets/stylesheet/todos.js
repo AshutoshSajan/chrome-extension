@@ -12,6 +12,36 @@
 		// and function to push objects in array
 		var todoData = JSON.parse(localStorage.getItem("todo-List")) || [];
 		var delItems = [];
+
+// =============================================================================
+// login function
+// =============================================================================
+
+function login(array = []){
+	array.forEach(value => {
+
+		if(value.userName){
+
+			var welcomeText = document.createElement("p");
+			welcomeText.classList.add("greeting");
+			document.body.appendChild(welcomeText);
+
+			welcomeText.textContent = `Hello ${value.userName}`;
+
+		} else {
+			var prompt = document.createElement("input");
+			prompt.classList.add("login-input");
+			prompt.style.placeholder = "add your name";
+
+			var userInfo = {username: input.value,
+				email: input.value
+			}
+			// displayTodo();
+		}
+	})
+}
+// login(todoData);
+		
 // ==============================================================================================
 		// addtodo function to create object and push it into array
 // ==============================================================================================
@@ -42,13 +72,16 @@
 		add.addEventListener("click",arrData);
 
 // ==============================================================================================
-		// display function
+// edit function
 // ==============================================================================================
 		
 		var ul = document.querySelector(".task-list");
 				ul.addEventListener("dblclick", (e) => {
 
 					if(e.target.classList.contains("todoText")){
+
+						let indexOfInput = e.target.dataset.id;
+
 						var li = document.createElement("li");
 						var p = document.createElement("p");
 						var parentNode = e.target.parentNode;
@@ -61,35 +94,41 @@
 						editInput.classList.add("todoText");
 						editInput.value = e.target.textContent;
 
-						localStorage.setItem("todo-List", JSON.stringify(todoData));
-
 						parentNode.replaceChild(editInput, label);
 
 						editInput.addEventListener("blur", (e) => {
 							label.textContent = editInput.value;
+
+							todoData[indexOfInput].todoText = editInput.value;
+
 							parentNode.replaceChild(label, editInput);
 
-							arrData();
 							localStorage.setItem("todo-List", JSON.stringify(todoData));
 
 						})
 
-						editInput.addEventListener("click", (e) => {
+						editInput.addEventListener("keyup", (e) => {
 							if(e.keyCode === 13){
 								label.textContent = editInput.value;
+
+								todoData[indexOfInput].todoText = editInput.value;
+
 								parentNode.replaceChild(label, editInput);
-								arrData();
+
 								localStorage.setItem("todo-List", JSON.stringify(todoData));
 							}
 						})
 					}
-					localStorage.setItem("todo-List", JSON.stringify(todoData));
 				});
 
+// ==============================================================================================
+// display function
+// ==============================================================================================
 
 		// todo list display / add-btn click function
 		function displayTodo(arrayData = []){
 
+			login();
 			if(todoData.length == 0) {
 				footerUl.style.display = "none";
 			}
@@ -127,6 +166,7 @@
 				// var editInput = document.createElement("input");
 				
 				p.setAttribute("class", "todoText");
+				p.setAttribute("data-id", index);
 				p.innerText = "";
 				p.innerText = todo.todoText;
 				li.appendChild(p);
