@@ -1,0 +1,253 @@
+/* Importing Normalize css */
+@import url("base.css");
+@import url("watch.css");
+
+// border box
+
+*,*:before, *:after {
+	box-sizing: border-box;
+}
+
+// ===============================
+// general css
+// ===============================
+button, input {
+	border: 0;
+	outline: 0;
+	overflow: hidden;
+	background-color: transparent;
+}
+a {
+	color: #f3f3f3;
+}
+
+::-webkit-input-placeholder{
+		color: rgba(0,0,0,0.8);
+	}
+
+// ==========================================================
+// 
+// ==========================================================
+body {
+	height: 90vh;
+	// background: url(../media/slide01.jpg) no-repeat;
+	background-size: cover;
+}
+
+// ==========================================================
+// todos css
+// ==========================================================
+
+.todos-sec {
+	float: right;
+
+// ========================================
+ // todo input section
+// ========================================
+
+	.todo {
+		position: relative;
+		text-align: center;
+		top: 15%;
+		left: 50%;
+		transform: translateX(-50%);
+		display: inline-block;
+		border : 0.5px solid rgba(0,0,0,0.04);
+		box-shadow: 1px 15px 60px 20px rgba(0,0,0,0.03);
+
+		.input-box {
+			padding: 16px 0;
+			background: rgba(215,255,255,0.3);
+			border-bottom: 2px solid rgba(0,0,0,0.05);
+		}
+
+		.label {
+			font-size: 30px;
+			padding: 0 20px;
+			color: rgba(0,0,0,0.8);
+		}
+
+		.input {
+			width: 500px;
+			font-size: 30px;
+			color: #111;
+		}
+
+		.add {
+			font-size: 30px;
+			color: transparent;
+			cursor: pointer;
+			transition: color 1s ease-out;
+		}
+
+		.add:hover{
+			color: rgba(0,0,0,0.8);
+		}
+
+	}
+
+	// ========================================
+	// todo middle task list section
+	// ========================================
+
+	.task-list{
+		margin: 0;
+		padding: 0;
+		max-height: 550px;
+		overflow: auto;
+		border-left: 1px solid #f3f3f3;
+		border-right: 1px solid #f3f3f3;
+		li {
+			position: relative;
+			text-align: left;
+			padding: 0 5px;
+			margin: 0;
+			border-bottom: 1px solid rgba(255,255,255,0.9);
+			vertical-align: middle;
+			width: 642px;
+		}
+
+		.todo-list {
+			align-items: center;
+
+			.todoText {
+				margin: 20px 0;
+				font-size: 30px;
+				color: white;
+				width: 600px;
+				word-break: break-all;
+			}
+
+			.crossBtn {
+				font-size: 30px;
+				position: absolute;
+				right: 5%;
+				top: 50%;
+				color: rgba(230, 176, 170, 0);
+				color: transparent;
+				transform: translateY(-50%);
+				transition: color 1s ease-out;
+			}
+
+			.crossBtn:hover {
+				color: rgba(205, 97, 85, 1);
+			}
+
+// ========================================
+// circuler checkbox
+// ========================================
+			.roundCheckBox {
+		    width: 2.3em;
+		    height: 2.3em;
+		    background-color: black;
+		    border-radius: 50%;
+		    vertical-align: middle;
+		    border: 1px solid #ddd;
+		    -webkit-appearance: none;
+		    outline: none;
+		    cursor: pointer;
+		    margin-right: 30px;
+			}
+
+			.roundCheckBox:checked {
+			  background: url(../../assets/media/checkBox.svg);
+			  background-position: 80%, 50%;
+			}
+		}
+	}
+
+// ========================================
+		// todo footer list
+// ========================================
+	.list {
+		display:  flex;
+		list-style-type: none;
+		justify-content: space-between;
+		// padding: 20px 10px;
+		.total-items {
+				color: #fff;
+			}
+		
+		.list li {
+			font-size: 18px;
+			// color: #fff;
+			
+		}
+
+		.li-btn {
+			border-radius: 3px;
+			font-size: 16px;
+			color: #fff;
+			padding: 3px 10px;
+			margin: 0;
+			cursor: pointer;
+			border: 0.5px solid transparent;
+		}
+
+		.li-btn:hover {
+			border: 0.5px solid rgba(175, 47, 47, 0.2);
+		}
+
+		.clear:hover {
+			text-decoration: underline;
+			cursor: pointer;
+			border: none;
+		}
+
+		// class for todo footer active clases
+		.activeListBorder {
+			border: 1px solid rgba(175, 47, 47, 0.9);
+		}
+	}	
+}
+.primary-footer {
+	position: absolute;
+	left: 50%;
+	bottom: 5%;
+	transform: translateX(-50%);
+	ul {
+		margin: 0;
+		display: flex;
+		width: 50vw;
+		padding: 10px;
+		justify-content: space-between;
+
+		.fas, .fab, .far {
+			color: rgba(204, 255, 0, 1);
+			font-size: 30px;
+			text-shadow: 0 0 1px rgba(255,255,255,1);
+		}
+		i:hover {
+			color: #fff;
+			text-shadow: 0px 0px 50px white;
+		}
+	}
+}
+// ========================================
+// quotes section
+// ========================================
+	
+.quote-text {
+	position: absolute;
+	bottom: 7%;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 80vw;
+	height: 200px;
+}
+
+.quote-para {
+	color: #f3f3f3;
+	font-style: italic;
+	text-shadow: 0 0 8px black;
+}
+
+
+// log in container
+
+.login-container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
