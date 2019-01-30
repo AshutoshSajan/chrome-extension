@@ -12,19 +12,21 @@ function randomBg(){
 	document.body.style.backgroundSize = "cover";
 }
 randomBg();
-setInterval(randomBg, 10000);
+setInterval(randomBg, 100000);
 
-function login(){
-	var loginDiv = document.createElement("div");
-	loginDiv.setAttribute("class", "login-container");
-	var  loginPage = document.createElement("input");
-	var label = document.createElement("label")
-	label.setAttribute("for", "input");
-	label.innerText = "what is your name";
+// function login(){
+// 	var loginDiv = document.createElement("div");
+// 	loginDiv.setAttribute("class", "login-container");
+// 	var  loginPage = document.createElement("input");
+// 	var label = document.createElement("label")
+// 	label.setAttribute("for", "input");
+// 	label.innerText = "what is your name";
 
-	document.body.appendChild(loginDiv)
-	document.body.appendChild(loginPage);
-	document.body.appendChild(label);
+// 	document.body.appendChild(loginDiv)
+// 	document.body.appendChild(loginPage);
+// 	document.body.appendChild(label);
+// }
+// login();
 
-}
+
 

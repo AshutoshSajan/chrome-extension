@@ -13,34 +13,63 @@
 		var todoData = JSON.parse(localStorage.getItem("todo-List")) || [];
 		var delItems = [];
 
+		var userName = localStorage.getItem("userInfo") || '' ;
+ 		
+
 // =============================================================================
 // login function
 // =============================================================================
+nameInput.addEventListener('keydown',(e) => {
+if(e.keyCode == 13) inputField()});
 
-function login(array = []){
-	array.forEach(value => {
-
-		if(value.userName){
-
-			var welcomeText = document.createElement("p");
-			welcomeText.classList.add("greeting");
-			document.body.appendChild(welcomeText);
-
-			welcomeText.textContent = `Hello ${value.userName}`;
-
-		} else {
-			var prompt = document.createElement("input");
-			prompt.classList.add("login-input");
-			prompt.style.placeholder = "add your name";
-
-			var userInfo = {username: input.value,
-				email: input.value
-			}
-			// displayTodo();
-		}
-	})
+function inputField(){
+	userName = nameInput.value
+	var welcomeText = document.createElement("p");
+	welcomeText.classList.add("greeting");
+	welcomeText.textContent = `Hello ${userName}`;
+	document.querySelector(".login-sec").replaceChild(welcomeText,nameInput);
+	localStorage.setItem("userInfo", userName);
 }
-// login(todoData);
+
+// =============================================================================
+
+// function login(obj = []){
+
+// 	obj.forEach( name => {
+
+// 		if(name.userName){
+
+// 			var welcomeText = document.createElement("p");
+// 			welcomeText.classList.add("greeting");
+// 			document.querySelector(".login-sec").appendChild(welcomeText);
+
+// 			welcomeText.textContent = `Hello ${userData.userName}`;
+
+// 		} else {
+// 			var namePrompt = document.createElement("input");
+// 			namePrompt.classList.add("login-input");
+// 			namePrompt.placeholder = "Add your name";
+
+// 			document.querySelector(".login-sec").appendChild(namePrompt);
+
+// 			namePrompt.addEventListener("keyup", (e) => {
+// 				if(e.keyCode === 13) {
+// 					var userInfo = {
+// 						userName: namePrompt.value,
+// 					};
+// 					userData.push(userInfo);	
+// 					// namePrompt.value = "";
+// 					localStorage.setItem("userDetails", JSON.stringify(userData));
+// 					namePrompt.style.display = "none";
+// 					login(todoData);
+// 				}
+// 			});
+
+// 			// displayTodo(todoData);
+// 		}
+// 	});
+// }
+// login(userData);
 		
 // ==============================================================================================
 		// addtodo function to create object and push it into array
@@ -128,7 +157,6 @@ function login(array = []){
 		// todo list display / add-btn click function
 		function displayTodo(arrayData = []){
 
-			login();
 			if(todoData.length == 0) {
 				footerUl.style.display = "none";
 			}
@@ -194,6 +222,12 @@ function login(array = []){
 				li.appendChild(cancelBtn);
 				ul.appendChild(li);
 			});
+
+			if(userName){
+				var welcomeText = document.createElement("p");
+				welcomeText.textContent = `Hello ${userName}`;
+				document.querySelector(".login-sec").replaceChild(welcomeText, nameInput);
+			}
 
 			input.value = "";
 		}

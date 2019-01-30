@@ -11,26 +11,36 @@
 <body>
 
   <section class="time-and-todos-sec">
-
+		
+		<!-- clock section -->
   	<section class="time-sec">
   		<h1 class="date-header"></h1>
   	</section>
+
+  	<!-- welcome section -->
   	<section class="wellcome-sec">
   		<p></p>
   	</section>
-
+	
+		<!-- todo section -->
   	<section class="todos-sec">
 			<section class="todo">
+
+				<!-- todo input and btn box -->
 				<div class="input-box">
 					<label class="label" for="input-box"><i class="fas fa-angle-down"></i></label>
 					<input class="input" type="text" placeholder="What needs to be done?">
 					<button class="add" onclick="">ADD</button>
 				</div>
+
+				<!-- todo task list section -->
 				<div class="tasks">
 					<ul class = "task-list">
 						
 					</ul>
 				</div>
+
+				<!-- todo footer  -->
 				<ul class="list">
 					<li class="list-1 left total-items"> 0 items left</li>
 					<li class="list-2"><span class="li-btn all">All</span><span class="li-btn active">Active</span><span class="li-btn completed">Completed</span></li>
@@ -39,21 +49,32 @@
 			</section>
   	</section>
   </section>
-
+	
+	<!-- quote section -->
   <blockquote class="quote-text">
         
   </blockquote>
+
+	<!-- login section -->
+  <div class="login-sec">
+  	<input type="text" id="nameInput" placeholder="Enter your name">
+  </div>
+	
+	<!-- footer -->
   <footer class="primary-footer">
-  	<ul>
-  		<li><a social-links href="#"><i class="fab fa-twitter"></i></a></li>
-  		<li><a social-links href="#"><i class="fab fa-facebook-f"></i></a></li>
-  		<li><a social-links href="#"><i class="fab fa-github"></i></a></li>
-  		<li><a social-links href="#"><i class="fab fa-instagram"></i></a></li>
-  		<li><a social-links href="#"><i class="far fa-envelope"></i></a></li>
-  		<li><a social-links href="#"><i class="fab fa-medium-m"></i></a></li>
-  		<li><a social-links href="#"><i class="fab fa-linkedin-in"></i></a></li>
+  	<ul class="footer-list">
+  		<li><a social-links href="https://twitter.com/Ashutosh_Sajan" target="_blank"><i class="fab fa-twitter"></i></a></li>
+  		<li><a social-links href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+  		<li><a social-links href="https://github.com/sajan1231" target="_blank"><i class="fab fa-github"></i></a></li>
+  		<li><a social-links href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+  		<li><a social-links href="https://mail.google.com/mail/u/0/#inbox" target="_blank"><i class="far fa-envelope"></i></a></li>
+  		<li><a social-links href="https://medium.com/@Ashutosh_Sajan" target="_blank"><i class="fab fa-medium-m"></i></a></li>
+  		<li><a social-links href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+  		<li><a social-links href="https://drive.google.com/drive/my-drive" target="_blank"><i class="fab fa-google-drive"></i></i></a></li>
   	</ul>
   </footer>
+
+  <!-- js script src-->
   <script src="assets/stylesheet/main.js"></script>
   <script src="assets/stylesheet/todos.js"></script>
   <script src="assets/stylesheet/watch.js"></script>
