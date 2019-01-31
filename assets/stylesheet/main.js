@@ -1,3 +1,7 @@
+// =========================================================================
+// random bg function
+// =========================================================================
+
 var imageArray = ["./assets/media/slide01.jpg",
 "./assets/media/slide02.jpg",
 "./assets/media/slide03.jpg",
@@ -10,23 +14,36 @@ function randomBg(){
 	var random = Math.floor(Math.random() * (imageArray.length - 1));
 	document.body.style.background = `url(${imageArray[random]})`;
 	document.body.style.backgroundSize = "cover";
+	document.body.style.transition = `background 4s ease-out`;
 }
 randomBg();
-setInterval(randomBg, 100000);
+setInterval(randomBg, 10000);
 
-// function login(){
-// 	var loginDiv = document.createElement("div");
-// 	loginDiv.setAttribute("class", "login-container");
-// 	var  loginPage = document.createElement("input");
-// 	var label = document.createElement("label")
-// 	label.setAttribute("for", "input");
-// 	label.innerText = "what is your name";
+// =========================================================================
+// login function
+// =========================================================================
 
-// 	document.body.appendChild(loginDiv)
-// 	document.body.appendChild(loginPage);
-// 	document.body.appendChild(label);
-// }
-// login();
+var userName =  localStorage.getItem("userInfo") || '';
+
+function login(){
+	var loginDiv = document.createElement("div");
+	loginDiv.setAttribute("class", "login-container");
+	var  loginPage = document.createElement("input");
+	loginPage.placeholder = "what is your name";
+
+	loginPage.addEventListener("keyup", (e) => {
+		if(e.keyCode === 13){
+			var p = document.createElement("p");
+			p.innerText = `Hello ${loginPage.value}`;
+			loginDiv.replaceChild(p, loginPage);
+			localStorage.setItem("userInfo", userName);
+		}
+	})
+	localStorage.setItem("userInfo", userName);
+	document.body.appendChild(loginDiv)
+	loginDiv.appendChild(loginPage);
+}
+login();
 
 
 

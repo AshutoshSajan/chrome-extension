@@ -19,6 +19,12 @@
 // =============================================================================
 // login function
 // =============================================================================
+// var askName = document.querySelector(".input-name");
+
+// if (localStorage.getItem("userInfo") === "") {
+// 	askName.style.display = "inline-block";
+// }
+
 nameInput.addEventListener('keydown',(e) => {
 if(e.keyCode == 13) inputField()});
 
