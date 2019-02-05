@@ -23,27 +23,32 @@ setInterval(randomBg, 10000);
 // login function
 // =========================================================================
 
-var userName =  localStorage.getItem("userInfo") || '';
+// var userName =  localStorage.getItem("userInfo") || '';
 
-function login(){
-	var loginDiv = document.createElement("div");
-	loginDiv.setAttribute("class", "login-container");
-	var  loginPage = document.createElement("input");
-	loginPage.placeholder = "what is your name";
+// function login(){
+// 	var loginDiv = document.createElement("div");
+// 	loginDiv.setAttribute("class", "login-container");
+// 	var  loginPage = document.createElement("input");
+// 	loginPage.placeholder = "what is your name";
 
-	loginPage.addEventListener("keyup", (e) => {
-		if(e.keyCode === 13){
-			var p = document.createElement("p");
-			p.innerText = `Hello ${loginPage.value}`;
-			loginDiv.replaceChild(p, loginPage);
-			localStorage.setItem("userInfo", userName);
-		}
-	})
-	localStorage.setItem("userInfo", userName);
-	document.body.appendChild(loginDiv)
-	loginDiv.appendChild(loginPage);
-}
-login();
+// 	loginPage.addEventListener("keyup", (e) => {
+// 		if(e.keyCode === 13){
+// 			var p = document.createElement("p");
+// 			p.innerText = `Hello ${loginPage.value}`;
+// 			loginDiv.replaceChild(p, loginPage);
+// 			localStorage.setItem("userInfo", userName);
+// 		}
+// 	})
+// 	localStorage.setItem("userInfo", userName);
+// 	document.body.appendChild(loginDiv)
+// 	loginDiv.appendChild(loginPage);
+// }
+// login();
 
 
+// function checkTaskDecoration(){
+// 	if(tododata.todoStatus === true){
+
+// 	}
+// }
 

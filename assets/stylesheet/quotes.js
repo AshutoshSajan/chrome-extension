@@ -469,16 +469,17 @@ var quotes = [
 
 // var para = document.querySelector("p");
 function text(){
-  var randomIndex = Math.floor(Math.random() * quotes.length-1);
+  var randomIndex = Math.floor(Math.random() * quotes.length - 1);
   var body = document.querySelector("body");
   var quoteText = document.querySelector(".quote-text");
   var p = document.createElement("p");
   p.setAttribute("class", "quote-para");
   p.style.fontSize = "30px";
   p.style.textAlign = "center";
-  p.innerText =  quotes[randomIndex].quote;
+  const quote = quotes[randomIndex]
+  p.innerText =  quote ? quote.quote : '';
   quoteText.innerHTML = "";
-  quoteText.appendChild(p);
+  quoteText.appendChild(p); 
 }
 text();
 setInterval(text, 100000);

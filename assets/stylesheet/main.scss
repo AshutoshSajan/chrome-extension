@@ -106,9 +106,14 @@ body {
 			vertical-align: middle;
 			width: 642px;
 		}
+		
+		.todo-list:hover .crossBtn {
+			color: rgba(205, 97, 85, 1);
+		}
 
 		.todo-list {
 			align-items: center;
+
 
 			.todoText {
 				margin: 20px 0;
@@ -116,6 +121,10 @@ body {
 				color: white;
 				width: 600px;
 				word-break: break-all;
+			}
+
+			.strikeout {
+				text-decoration: line-through;
 			}
 
 			.crossBtn {
@@ -126,12 +135,10 @@ body {
 				color: rgba(230, 176, 170, 0);
 				color: transparent;
 				transform: translateY(-50%);
-				transition: color 1s ease-out;
+				transition: color 1.6s ease-out;
 			}
 
-			.crossBtn:hover {
-				color: rgba(205, 97, 85, 1);
-			}
+			
 
 // ========================================
 // circuler checkbox
