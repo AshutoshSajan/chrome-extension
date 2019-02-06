@@ -78,7 +78,9 @@ body {
       vertical-align: middle;
       width: 642px; }
     .todos-sec .task-list .todo-list:hover .crossBtn {
-      color: #cd6155; }
+      color: #cd6155;
+      transform: rotate(180deg);
+      transform-origin: 70% 20%; }
     .todos-sec .task-list .todo-list {
       align-items: center; }
       .todos-sec .task-list .todo-list .todoText {
@@ -90,11 +92,11 @@ body {
       .todos-sec .task-list .todo-list .strikeout {
         text-decoration: line-through; }
       .todos-sec .task-list .todo-list .crossBtn {
+        display: inline-block;
         font-size: 30px;
         position: absolute;
         right: 5%;
         top: 50%;
-        color: rgba(230, 176, 170, 0);
         color: transparent;
         transform: translateY(-50%);
         transition: all 1s ease-out; }
@@ -172,7 +174,6 @@ body {
     .primary-footer .footer-list li:hover {
       transform: scale(1.5); }
     .primary-footer .footer-list li:hover i {
-      transform: rotate(180deg);
       color: #ccff00; }
 
 .quote-text {

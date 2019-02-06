@@ -125,11 +125,12 @@ body {
 		
 		.todo-list:hover .crossBtn {
 			color: rgba(205, 97, 85, 1);
+			transform: rotate(180deg);
+			transform-origin: 70% 20%;
 		}
 
 		.todo-list {
 			align-items: center;
-
 
 			.todoText {
 				margin: 20px 0;
@@ -144,16 +145,15 @@ body {
 			}
 
 			.crossBtn {
+				display: inline-block;
 				font-size: 30px;
 				position: absolute;
 				right: 5%;
 				top: 50%;
-				color: rgba(230, 176, 170, 0);
 				color: transparent;
 				transform: translateY(-50%);
 				transition: all 1s ease-out;
 			}
-
 			
 
 // ========================================
@@ -264,8 +264,8 @@ body {
 		li:hover {
 			transform: scale(1.5);
 		}
+
 		li:hover i{
-			transform: rotate(180deg);
 			color: rgb( 204, 255, 0);
 		}
 	}
