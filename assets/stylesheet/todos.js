@@ -5,6 +5,7 @@ var input = document.querySelector(".input");
 var totalItems = document.querySelector(".total-items");
 var mainInputIcon = document.querySelector(".fas");
 var footerUl = document.querySelector(".list");
+var dragElmData = null;
 
 footerUl.style.display = "none";
 
@@ -21,11 +22,6 @@ var userName = localStorage.getItem("userInfo") || '' ;
 // =============================================================================
 // login function
 // =============================================================================
-// var askName = document.querySelector(".input-name");
-
-// if (localStorage.getItem("userInfo") === "") {
-// 	askName.style.display = "inline-block";
-// }
 
 nameInput.addEventListener('keydown',(e) => {
 if(e.keyCode == 13) inputField()});
@@ -38,46 +34,6 @@ function inputField(){
 	document.querySelector(".login-sec").replaceChild(welcomeText,nameInput);
 	localStorage.setItem("userInfo", userName);
 }
-
-// =============================================================================
-
-// function login(obj = []){
-
-// 	obj.forEach( name => {
-
-// 		if(name.userName){
-
-// 			var welcomeText = document.createElement("p");
-// 			welcomeText.classList.add("greeting");
-// 			document.querySelector(".login-sec").appendChild(welcomeText);
-
-// 			welcomeText.textContent = `Hello ${userData.userName}`;
-
-// 		} else {
-// 			var namePrompt = document.createElement("input");
-// 			namePrompt.classList.add("login-input");
-// 			namePrompt.placeholder = "Add your name";
-
-// 			document.querySelector(".login-sec").appendChild(namePrompt);
-
-// 			namePrompt.addEventListener("keyup", (e) => {
-// 				if(e.keyCode === 13) {
-// 					var userInfo = {
-// 						userName: namePrompt.value,
-// 					};
-// 					userData.push(userInfo);	
-// 					// namePrompt.value = "";
-// 					localStorage.setItem("userDetails", JSON.stringify(userData));
-// 					namePrompt.style.display = "none";
-// 					login(todoData);
-// 				}
-// 			});
-
-// 			// displayTodo(todoData);
-// 		}
-// 	});
-// }
-// login(userData);
 		
 // ==============================================================================================
 		// addtodo function to create object and push it into array
@@ -125,7 +81,6 @@ ul.addEventListener("dblclick", (e) => {
 		var parentNode = e.target.parentNode;
 
 		var label = e.target;
-		console.log(e.target);
 		var editInput = document.createElement("input");
 		editInput.type = "text";
 		editInput.focus();
@@ -180,10 +135,17 @@ function displayTodo(arrayData = []){
 	arrayData.forEach((todo, index) => {
 
 		var li = document.createElement("li");
-		
 		li.setAttribute("class", "todo-list");
 		li.style.display = "flex";
-	
+		li.setAttribute('draggable', true);
+		li.setAttribute("data-id", index);
+
+		li.addEventListener('dragstart', handleDragStart);
+		li.addEventListener('dragenter', handleDragEnter)
+		li.addEventListener('dragover', handleDragOver);
+		li.addEventListener('drop', handleDrop);
+		li.addEventListener('dragend', handleDragEnd);
+
 		var checkBox = document.createElement("input");
 
 		// checkbox is true or false will 
@@ -271,86 +233,137 @@ function pendingTask(){
 }
 
 active.addEventListener("click", pendingTask);
+
 	 	
 
 // ==============================================================================================
 // show only complete task function
 // ==============================================================================================
-	 var complete = document.querySelector(".completed");
-	 function allCompleteTask(){
-	 	var showComplete = todoData.filter(value => value.todoStatus === true);
-	 	displayTodo(showComplete);
-	 }
-	 complete.addEventListener("click", allCompleteTask);
+var complete = document.querySelector(".completed");
+function allCompleteTask(){
+	var showComplete = todoData.filter(value => value.todoStatus === true);
+	displayTodo(showComplete);
+}
+complete.addEventListener("click", allCompleteTask);
 
 
 // ==============================================================================================
 // clear completed task function
 // ==============================================================================================	
-	 var removeCompleted = document.querySelector(".clear");
-	 function rmCompleted(){
+var removeCompleted = document.querySelector(".clear");
+function rmCompleted(){
 
-	 	// asign new value to var data by filtering it and then call the main display function  
-	 	todoData = todoData.filter( v => v.todoStatus == false);
-		displayTodo(todoData);
-		localStorage.setItem("todo-List", JSON.stringify(todoData));
-	 }
-	 removeCompleted.addEventListener("click", rmCompleted);
-
+	// asign new value to var data by filtering it and then call the main display function  
+	todoData = todoData.filter( v => v.todoStatus == false);
+displayTodo(todoData);
+localStorage.setItem("todo-List", JSON.stringify(todoData));
+}
+removeCompleted.addEventListener("click", rmCompleted);
 
 // ==============================================================================================
 // all task select by clicking on the input icon
 // ==============================================================================================
-	function allCheck(e){
-		console.log(e)
-		var allTaskCheck = todoData.map( value => {
-			value.todoStatus = allFlip;
-			return value;
-		});
-		displayTodo(allTaskCheck);
-		allFlip = !allFlip;
-	}
-	mainInputIcon.addEventListener("click", allCheck);
+function allCheck(e){
+	var allTaskCheck = todoData.map( value => {
+		value.todoStatus = allFlip;
+		return value;
+	});
+	displayTodo(allTaskCheck);
+	allFlip = !allFlip;
+}
+mainInputIcon.addEventListener("click", allCheck);
 
 
 // ==============================================================================================
 // filtered function
 // ==============================================================================================	
 	
-	function filterdLength(){
-		var taskLeft = todoData.filter( value => value.todoStatus === false).length;
-		totalItems.innerText =`${taskLeft} items left`;
-	}
+function filterdLength(){
+	var taskLeft = todoData.filter( value => value.todoStatus === false).length;
+	totalItems.innerText =`${taskLeft} items left`;
+}
 
 // ==============================================================================================
 // actve class function for all items btn
 // ==============================================================================================
-	document.querySelector(".all").classList.add("class", "activeListBorder")
-	function allTodoTask(){
-		document.querySelector(".all").classList.add("class", "activeListBorder");
-		document.querySelector(".active").classList.remove("activeListBorder");
-		document.querySelector(".completed").classList.remove("activeListBorder");
-	}
-  document.querySelector(".all").addEventListener("click", allTodoTask);
+document.querySelector(".all").classList.add("class", "activeListBorder")
+function allTodoTask(){
+	document.querySelector(".all").classList.add("class", "activeListBorder");
+	document.querySelector(".active").classList.remove("activeListBorder");
+	document.querySelector(".completed").classList.remove("activeListBorder");
+}
+document.querySelector(".all").addEventListener("click", allTodoTask);
 
 
 // ==============================================================================================
 // actve class function for active task btn
 // ==============================================================================================
-	function activeTodoTask(){
-		document.querySelector(".all").classList.remove("class", "activeListBorder");
-		document.querySelector(".active").classList.add("activeListBorder");
-		document.querySelector(".completed").classList.remove("activeListBorder");
-	}
-  document.querySelector(".active").addEventListener("click", activeTodoTask);
+function activeTodoTask(){
+	document.querySelector(".all").classList.remove("class", "activeListBorder");
+	document.querySelector(".active").classList.add("activeListBorder");
+	document.querySelector(".completed").classList.remove("activeListBorder");
+}
+document.querySelector(".active").addEventListener("click", activeTodoTask);
 
 
 // ==============================================================================================
 // actve class function for complete todo task
 // ==============================================================================================
-  function doneTodoTask(){
-		document.querySelector(".all").classList.remove("class", "activeListBorder");
-		document.querySelector(".active").classList.remove("activeListBorder");
-		document.querySelector(".completed").classList.add("activeListBorder");
-	}
-  document.querySelector(".completed").addEventListener("click", doneTodoTask);
+function doneTodoTask(){
+	document.querySelector(".all").classList.remove("class", "activeListBorder");
+	document.querySelector(".active").classList.remove("activeListBorder");
+	document.querySelector(".completed").classList.add("activeListBorder");
+}
+document.querySelector(".completed").addEventListener("click", doneTodoTask);
+
+// ===========================================================
+// handleDragStart function ******all DnD functions
+// ===========================================================
+function	handleDragStart(e){
+	e.target.style.opacity = '0.5';
+	
+  dragElmData = e.target;
+  e.dataTransfer.effectAllowed = 'move';
+  e.dataTransfer.setData('text/html', e.target.innerHTML);
+}
+
+// ===========================================================
+// handleDragEnter function
+// ===========================================================
+function	handleDragEnter(e){
+	e.target.classList.remove("over");
+}
+
+// ===========================================================
+// handleDragOver function
+// ===========================================================
+function	handleDragOver(e){
+	if (e.preventDefault) {
+    e.preventDefault();
+  }
+  e.target.classList.remove("over");
+  e.dataTransfer.dropEffect = 'move';
+}
+
+// ===========================================================
+// handleDrop function
+// ===========================================================
+function	handleDrop(e){
+	if (e.stopPropagation) {
+    e.stopPropagation();
+  }
+  if (dragElmData != e.target) {
+    dragElmData.innerHTML = e.target.innerHTML;
+    e.target.innerHTML = e.dataTransfer.getData('text/html');
+  }
+  e.target.style.opacity = '1';
+}
+
+// ===========================================================
+// handleDragEnd function
+// ===========================================================
+function	handleDragEnd(e){
+	e.target.style.opacity = '1';
+	allLi = document.querySelectorAll("ul li");
+	allLi.forEach(elm => elm.classList.remove("over"));
+}

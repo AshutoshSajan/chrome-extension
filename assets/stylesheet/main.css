@@ -20,6 +20,18 @@ a {
 body {
   height: 90vh; }
 
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Required to make elements draggable in old WebKit */
+  -khtml-user-drag: element;
+  -webkit-user-drag: element; }
+
+.border {
+  border: 2px dashed #999; }
+
 .todos-sec {
   float: right; }
   .todos-sec .todo {
@@ -85,7 +97,7 @@ body {
         color: rgba(230, 176, 170, 0);
         color: transparent;
         transform: translateY(-50%);
-        transition: color 1.6s ease-out; }
+        transition: all 1s ease-out; }
       .todos-sec .task-list .todo-list .roundCheckBox {
         width: 2.4em;
         height: 2.3em;
@@ -160,6 +172,7 @@ body {
     .primary-footer .footer-list li:hover {
       transform: scale(1.5); }
     .primary-footer .footer-list li:hover i {
+      transform: rotate(180deg);
       color: #ccff00; }
 
 .quote-text {

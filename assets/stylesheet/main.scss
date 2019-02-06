@@ -27,11 +27,27 @@ a {
 	}
 
 // ==========================================================
-// 
+// main css
 // ==========================================================
 body {
 	height: 90vh;
 	// transition: background 2s ease-out;
+}
+// ==========================================================
+// dragable li
+// ==========================================================
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Required to make elements draggable in old WebKit */
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+}
+
+.border {
+	border: 2px dashed #999;
 }
 
 // ==========================================================
@@ -135,7 +151,7 @@ body {
 				color: rgba(230, 176, 170, 0);
 				color: transparent;
 				transform: translateY(-50%);
-				transition: color 1.6s ease-out;
+				transition: all 1s ease-out;
 			}
 
 			
@@ -249,6 +265,7 @@ body {
 			transform: scale(1.5);
 		}
 		li:hover i{
+			transform: rotate(180deg);
 			color: rgb( 204, 255, 0);
 		}
 	}
