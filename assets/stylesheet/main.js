@@ -13,13 +13,9 @@
 function randomBg(){
 	if(navigator.onLine == true){
 		setTimeout(()=> {
-			document.body.style.background = `url(https://source.unsplash.com/collection/495468/1920×1080) cover no-repeat center`
+			document.body.style.background = `url(https://source.unsplash.com/collection/495468/1920×1080) no-repeat center`;
 			document.body.style.backgroundSize = 'cover';
-		}, 2000);
-		setInterval(()=> {
-			document.body.style.background = 'url(https://source.unsplash.com/collection/495468/1280×720) no-repeat center'
-			document.body.style.backgroundSize = 'cover';
-		}, 20000)
+		}, 1000);
 
 	} else if(navigator.onLine == !true){
 		// // var random = Math.floor(Math.random() * (imageArray.length - 1));
@@ -72,7 +68,7 @@ function login(data){
 
 function timeGreet(){
 	if(new Date().getHours() >= 0 && new Date().getHours() < 13){
-		timeText = "Good Mornig";
+		timeText = "Good Morning";
 		login(userData);
 	}else if(new Date().getHours() >= 12 && new Date().getHours() < 17){
 		timeText = "Good Afternoon";
