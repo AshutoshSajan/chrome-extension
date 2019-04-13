@@ -3,10 +3,10 @@
 var add = document.querySelector(".add");
 var input = document.querySelector(".input");
 var totalItems = document.querySelector(".total-items");
-var mainInputIcon = document.querySelector(".fas");
+var mainInputIcon = document.querySelector(".all-check-btn");
 var footerUl = document.querySelector(".list");
 var dragElmData = null;
-
+var checkBox;
 footerUl.style.display = "none";
 
 var allFlip = false;
@@ -23,17 +23,17 @@ var userName = localStorage.getItem("userInfo") || '' ;
 // login function
 // =============================================================================
 
-nameInput.addEventListener('keydown',(e) => {
-if(e.keyCode == 13) inputField()});
+// nameInput.addEventListener('keydown',(e) => {
+// if(e.keyCode == 13) inputField()});
 
-function inputField(){
-	userName = nameInput.value
-	var welcomeText = document.createElement("p");
-	welcomeText.classList.add("greeting");
-	welcomeText.textContent = `Hello ${userName}`;
-	document.querySelector(".login-sec").replaceChild(welcomeText,nameInput);
-	localStorage.setItem("userInfo", userName);
-}
+// function inputField(){
+// 	userName = nameInput.value
+// 	var welcomeText = document.createElement("p");
+// 	welcomeText.classList.add("greeting");
+// 	welcomeText.textContent = `Hello ${userName}`;
+// 	document.querySelector(".login-sec").replaceChild(welcomeText,nameInput);
+// 	localStorage.setItem("userInfo", userName);
+// }
 		
 // ==============================================================================================
 		// addtodo function to create object and push it into array
@@ -146,7 +146,7 @@ function displayTodo(arrayData = []){
 		li.addEventListener('drop', handleDrop);
 		li.addEventListener('dragend', handleDragEnd);
 
-		var checkBox = document.createElement("input");
+		checkBox = document.createElement("input");
 
 		// checkbox is true or false will 
 		checkBox.checked = todoData.todoStatus;
@@ -198,11 +198,11 @@ function displayTodo(arrayData = []){
 		ul.appendChild(li);
 	});
 
-	if(userName){
-		var welcomeText = document.createElement("p");
-		welcomeText.textContent = `Hello ${userName}`;
-		document.querySelector(".login-sec").replaceChild(welcomeText, nameInput);
-	}
+	// if(userName){
+	// 	var welcomeText = document.createElement("p");
+	// 	welcomeText.textContent = `Hello ${userName}`;
+	// 	document.querySelector(".login-sec").replaceChild(welcomeText, nameInput);
+	// }
 
 	input.value = "";
 }
@@ -265,11 +265,13 @@ removeCompleted.addEventListener("click", rmCompleted);
 // ==============================================================================================
 function allCheck(e){
 	var allTaskCheck = todoData.map( value => {
+		console.log(e, value)
 		value.todoStatus = allFlip;
 		return value;
 	});
 	displayTodo(allTaskCheck);
 	allFlip = !allFlip;
+	checkBox.checked = todoData.todoStatus;
 }
 mainInputIcon.addEventListener("click", allCheck);
 

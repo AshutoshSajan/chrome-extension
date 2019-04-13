@@ -5,7 +5,12 @@ function clock (){
 	var min = date.getMinutes();
 	var sec = date.getSeconds();
 	var time = document.querySelector(".date-header");
-	time.innerText = `${hours}: ${min}: ${sec}`;
+
+	var h = (hours.toString().length < 2) ? "0" + hours : hours;
+	var m = (min.toString().length < 2) ? "0" + min : min;
+	var s = (sec.toString().length < 2) ? "0" + sec: sec;
+
+	time.innerText = `${h}: ${m}: ${s}`;
 	var greetingTxt = document.createElement("p");
 
 	// if (hours == 0 && hours <= 12){

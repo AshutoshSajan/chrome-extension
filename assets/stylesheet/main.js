@@ -12,17 +12,14 @@
 
 function randomBg(){
 	if(navigator.onLine == true){
-		setTimeout(()=> {
-			document.body.style.background = `url(https://source.unsplash.com/collection/495468/1920×1080) no-repeat center`;
+			document.body.style.background = `url(https://source.unsplash.com/random/1920×1080) no-repeat center`;
 			document.body.style.backgroundSize = 'cover';
-		}, 1000);
 
 	} else if(navigator.onLine == !true){
 		// // var random = Math.floor(Math.random() * (imageArray.length - 1));
 		// // document.body.style.background = `url(${imageArray[random]})`;
 		document.body.style.background = `url("../../assets/media/sunset.jpg") no-repeat center`;
 		document.body.style.backgroundSize = 'cover';
-		// document.body.style.transition = `background 4s ease-out`;
 		console.log("no internet connection");
 	}
 }
@@ -36,10 +33,9 @@ randomBg();
 var userData =  localStorage.getItem("userInfo") || '';
 var h2;
 var timeText;
-console.log(timeText);
+// console.log(timeText);
 function login(data){
 	if(data){
-		console.log(data)
 		h2 = document.createElement("h2");
 		h2.innerText = `${timeText} ${data}`;
 		h2.classList.add("greet");
@@ -48,22 +44,28 @@ function login(data){
 	}else if(!data) {
 		var loginDiv = document.createElement("div");
 		loginDiv.setAttribute("class", "login-container");
-		var  loginPage = document.createElement("input");
-		loginPage.placeholder = "what is your name";
+		var  loginInput = document.createElement("input");
+		loginInput.classList.add("loginInput");
+		loginInput.placeholder = "Enter your name";
 
-		loginPage.addEventListener("keyup", (e) => {
+		loginInput.addEventListener("keyup", (e) => {
 			if(e.keyCode === 13){
 				var userName = e.target.value;
 				var p = document.createElement("p");
+				p.classList.add("welcm-txt")
 				p.innerText = `Hello ${userName}`;
-				loginDiv.replaceChild(p, loginPage);
+				loginDiv.replaceChild(p, loginInput);
+				loginDiv.style.borderColor= "transparent";
+				loginDiv.style.boxShadow = "none";
 				localStorage.setItem("userInfo", userName);
 			}
 		})
 	}
 	// localStorage.setItem("userInfo", userName);
 	document.body.appendChild(loginDiv)
-	loginDiv.appendChild(loginPage);
+	loginDiv.appendChild(loginInput);
+	loginDiv ? document.body.setAttribute("id", "body") : document.body.style.background="#111"
+	// console.log(document.body)
 }
 
 function timeGreet(){

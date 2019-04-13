@@ -33,6 +33,11 @@ body {
 	height: 90vh;
 	transition: all 1s ease-out;
 }
+
+// #body {
+// 	background: #111;
+// 	opacity: 5;
+// }
 // ==========================================================
 // dragable li
 // ==========================================================
@@ -290,14 +295,17 @@ body {
 	text-shadow: 0 0 8px black;
 }
 
-
+// =================================
 // log in container
+// =================================
 
 .login-container {
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	border: 0.5px solid rgb(150, 202, 253);
+	box-shadow: 0.5rem 0.5rem 1rem rgba(0,0,0,.175);
 }
 
 .login-sec {
@@ -323,6 +331,20 @@ body {
 	display: none;
 }
 
+.loginInput {
+	font-size: 22px;
+	padding: 3px 9px;
+}
+
+.loginInput::-webkit-input-placeholder {
+	color: rgb(97, 97, 97);
+}
+
+.welcm-txt {
+	font-size: 30px;
+	padding: 3px 9px;
+	color: #111;
+}
 #nameInput, .greeting {
 	border-bottom: 1px solid white;
 	background-color: transparent;
