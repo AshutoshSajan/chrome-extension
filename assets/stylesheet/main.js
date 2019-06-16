@@ -10,35 +10,34 @@
 // "https://images.unsplash.com/photo-1496715976403-7e36dc43f17b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
 // ];
 
-function navigatorOnline(){
-	var network;
-	fetch("https://uinames.com/api/?amount=5")
-	.then(res => res.json())
-	.then(d => {
-		if(d.length == 5){
-			network = true;
-			randomBg(network)
-		}else{
-			network = false;
-			randomBg(network);
-		}
-	}).catch(err =>	err ? randomBg(network = false) : "");
-}
+// function navigatorOnline(){
+// 	var network;
+// 	fetch("https://uinames.com/api/?amount=5")
+// 	.then(res => res.json())
+// 	.then(d => {
+// 		if(d.length == 5){
+// 			network = true;
+// 			randomBg(network)
+// 		}else{
+// 			network = false;
+// 			randomBg(network);
+// 		}
+// 	}).catch(err =>	err ? randomBg(network = false) : "");
+// }
 
-function randomBg(network){
-	if(network){
-			document.body.style.background = `url(https://source.unsplash.com/random/1920×1080) no-repeat center`;
+function randomBg(){
+	if(navigator.onLine){
+			document.body.style.background = `url('https://source.unsplash.com/random') no-repeat center`;
 			document.body.style.backgroundSize = 'cover';
-	} else if(!network){
+	} else if(!navigator.onLine){
 		// // var random = Math.floor(Math.random() * (imageArray.length - 1));
 		// // document.body.style.background = `url(${imageArray[random]})`;
 		document.body.style.background = `url("../../assets/media/sunset.jpg") no-repeat center`;
 		document.body.style.backgroundSize = 'cover';
-		console.log("no internet connection");
+		console.error("no internet connection");
 	}
 }
-
-navigatorOnline();
+randomBg()
 
 // =========================================================================
 // login function
