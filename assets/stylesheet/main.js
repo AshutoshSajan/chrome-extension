@@ -46,13 +46,14 @@ randomBg()
 var userData =  localStorage.getItem("userInfo") || '';
 var h2;
 var timeText;
+var welcomeSec = document.querySelector('.wellcome-sec')
 // console.log(timeText);
 function login(data){
 	if(data){
 		h2 = document.createElement("h2");
 		h2.innerText = `${timeText} ${data}`;
 		h2.classList.add("greet");
-		document.body.appendChild(h2);
+		welcomeSec.appendChild(h2);
 		return;
 	}else if(!data) {
 		var loginDiv = document.createElement("div");

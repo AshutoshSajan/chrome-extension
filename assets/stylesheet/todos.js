@@ -177,7 +177,7 @@ function displayTodo(arrayData = []){
 		var cancelBtn = document.createElement("span");
 		
 		cancelBtn.setAttribute("class", "crossBtn");
-		cancelBtn.innerHTML = '<i class="fas fa-times"></i>';
+		cancelBtn.innerHTML = `<i class="fas fa-times" data-id=${index}></i>`;
 
 		// for deleting the todo list
 		// set setAttribute for identification of list items
@@ -185,13 +185,14 @@ function displayTodo(arrayData = []){
 
 		// set addEventListener for the information that on whitch element action happend 
 		cancelBtn.addEventListener("click", (e) => {
-			// storing the id value  
+			// storing the id value
 			var del = e.target.dataset.id;
-				// splicing the value from the array
-				delItems.push(todoData.splice(del,1));
-				displayTodo(todoData);
-				localStorage.setItem("todo-List", JSON.stringify(todoData));
-				filterdLength();
+			// splicing the value from the array
+			delItems.push(todoData.splice(del,1));
+			displayTodo(todoData);
+			
+			localStorage.setItem("todo-List", JSON.stringify(todoData));
+			filterdLength();
 		});
 		
 		li.appendChild(cancelBtn);
@@ -265,7 +266,6 @@ removeCompleted.addEventListener("click", rmCompleted);
 // ==============================================================================================
 function allCheck(e){
 	var allTaskCheck = todoData.map( value => {
-		console.log(e, value)
 		value.todoStatus = allFlip;
 		return value;
 	});
